@@ -1,5 +1,7 @@
 package base;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
@@ -17,13 +19,17 @@ public class BaseTest {
 	
 	public static WebDriver driver;
 	public static Properties props = new Properties();
+	public static Properties loc = new Properties();
 	public static FileReader fr;
+	public static FileReader fr2;
 	
-	@BeforeTest
+	@BeforeMethod
 	public void setUp() throws IOException {
 		if(driver == null) {
 			FileReader fr = new FileReader(System.getProperty("user.dir")+"/src/test/resources/configFiles/config.properties");
+			FileReader fr2 = new FileReader(System.getProperty("user.dir")+"/src/test/resources/configFiles/locators.properties");
 			props.load(fr);
+			loc.load(fr2);
 		}
 		
 		switch(props.getProperty("browser")) {
@@ -42,7 +48,7 @@ public class BaseTest {
 		}
 	}
 	
-	@AfterTest
+	@AfterMethod
 	public void tearDown() {
 		driver.close();
 		System.out.println("Browser Closed");

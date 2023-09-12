@@ -1,5 +1,7 @@
 package testcases;
 
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -7,12 +9,23 @@ import org.testng.annotations.Test;
 import base.BaseTest;
 
 public class LoginTest extends BaseTest {
-	@Test
-	public static void Login() throws InterruptedException {
-		driver.findElement(By.className("log-in")).click();
-		driver.findElement(By.name("email")).sendKeys("likot63782@nickolis.com");
-		driver.findElement(By.name("password")).sendKeys("foodlover3");
-		driver.findElement(By.xpath("//div[@type='submit']")).click();
+	public static float cnt = 0;
+	@Test(dataProvider="testdata")
+	public static void Login(String username, String password) throws InterruptedException {
+		driver.findElement(By.className(loc.getProperty("login_link"))).click();
+		driver.findElement(By.name(loc.getProperty("email_field"))).sendKeys(username);
+		driver.findElement(By.name(loc.getProperty("pwd_field"))).sendKeys(password);
+		driver.findElement(By.xpath(loc.getProperty("submit_btn"))).click();
+		Thread.sleep(3000);
+	}
+	@DataProvider(name="testdata")
+	public Object[][] tData() {
+		return new Object[][] {
+			{"expatkat@aol.com","travelbug3"},
+			{"travbud@travss.com", "foodgrub2"},
+			{"uhkot62@nilis.com", "chillysummer23"},
+			{"likot63782@nickolis.com", "foodlover3"}
+		};
 	}
 	
 }
