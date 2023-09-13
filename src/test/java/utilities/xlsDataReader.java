@@ -3,6 +3,7 @@ package utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import org.apache.poi.EncryptedDocumentException;
@@ -11,19 +12,19 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.testng.annotations.DataProvider;
 
 public class xlsDataReader {
 	public static String filePath = System.getProperty("user.dir")+"/src/test/resources/testData/SeleniumTestData.xlsx";
-	public static void main(String[] args) throws EncryptedDocumentException, IOException {
-		xlsDataReader reader = new xlsDataReader();
-		reader.getData("login");
-	}
 	
-	public String[][] getData(String excelSheetName) throws EncryptedDocumentException, IOException {
+	@DataProvider(name="xldata")
+	public String[][] getData(Method m) throws EncryptedDocumentException, IOException 
+	{
+		String xlSheetName = m.getName();
 		File f = new File(filePath);
 		FileInputStream fis = new FileInputStream(f);
 		Workbook wb = WorkbookFactory.create(fis);
-		Sheet sheet = wb.getSheet(excelSheetName);
+		Sheet sheet = wb.getSheet(xlSheetName);
 		
 		int tRows = sheet.getLastRowNum();
 		Row rows = sheet.getRow(0);
