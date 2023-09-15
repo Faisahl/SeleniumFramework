@@ -20,12 +20,15 @@ public class verifySearchForCountry extends BaseTest {
 		String place;
 		
 		searchBar = driver.findElement(By.xpath(loc.getProperty("search_bar")));
+		logger.info("searchbar located");
 		searchBar.click();
+		logger.info("searchbar clicked");
 		searchBar.sendKeys(location);
-		
+		logger.info("location entered into searchbar");
 		places = driver.findElements(By.className("place"));
+		logger.info("countries populated");
 		place = places.get(0).getText();
-		
+		logger.info(place + "=" + location);
 		Assert.assertEquals(place, location);
 		
 	}
