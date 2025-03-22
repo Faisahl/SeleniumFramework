@@ -1,2 +1,7 @@
-[INFO ] 2025-03-22 15:10:57,123 base.BaseTest:50 - browser has been instantiated
-[INFO ] 2025-03-22 15:11:01,305 base.BaseTest:58 - browser closed successfully
+[INFO ] 2025-03-22 16:03:13,282 base.BaseTest:48 - browser has been instantiated
+[INFO ] 2025-03-22 16:03:13,662 base.BaseTest:17 - navigated to login page
+[INFO ] 2025-03-22 16:03:13,969 base.BaseTest:23 - login method selected: contact number
+[INFO ] 2025-03-22 16:03:14,039 base.BaseTest:26 - correct contact number entered
+[INFO ] 2025-03-22 16:03:14,064 base.BaseTest:29 - correct password entered
+[INFO ] 2025-03-22 16:03:14,328 base.BaseTest:32 - login button clicked
+[INFO ] 2025-03-22 16:03:15,670 base.BaseTest:56 - browser closed successfully

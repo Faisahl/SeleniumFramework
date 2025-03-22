@@ -28,11 +28,8 @@ public class verifyEmailLoginByTitle extends BaseTest {
 		loginPage.submitLogin();
 		logger.info("login button clicked");
 		
-		String actualTitle = driver.getTitle();
-		logger.info("actual title after login: " + actualTitle);
-		
 		wait.until(ExpectedConditions.urlToBe(getBaseUrl()));
-		Assert.assertEquals(actualTitle, "Welcome - Kashti Agro");		
+		Assert.assertEquals(driver.getTitle(), "Welcome - Kashti Agro");		
 	}
 }
 

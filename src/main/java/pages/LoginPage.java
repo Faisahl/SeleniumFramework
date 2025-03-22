@@ -11,6 +11,7 @@ public class LoginPage {
 	private By passwordField = By.id("password");
 	private By submitBtn = By.id("submitBtn");
 	private By errorMsg = By.id("login-error");
+	private By contactRadio = By.id("contact");
 	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -30,5 +31,9 @@ public class LoginPage {
 	
 	public void submitLogin() {
 		driver.findElement(submitBtn).click();
+	}
+	
+	public void selectContactNumberMethod() {
+		driver.findElement(contactRadio).click();
 	}
 }

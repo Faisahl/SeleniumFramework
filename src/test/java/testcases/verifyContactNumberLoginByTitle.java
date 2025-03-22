@@ -19,7 +19,10 @@ public class verifyContactNumberLoginByTitle extends BaseTest {
 		LoginPage loginPage = new LoginPage(driver);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		
-		loginPage.enteridentifier("4142341543");
+		loginPage.selectContactNumberMethod();
+		logger.info("login method selected: contact number");
+		
+		loginPage.enteridentifier("3132021324");
 		logger.info("correct contact number entered");
 		
 		loginPage.enterPassword("opal");
@@ -28,10 +31,7 @@ public class verifyContactNumberLoginByTitle extends BaseTest {
 		loginPage.submitLogin();
 		logger.info("login button clicked");
 		
-		String actualTitle = driver.getTitle();
-		logger.info("actual title after login: " + actualTitle);
-		
 		wait.until(ExpectedConditions.urlToBe(getBaseUrl()));
-		Assert.assertEquals(actualTitle, "Welcome - Kashti Agro");		
+		Assert.assertEquals(driver.getTitle(), "Welcome - Kashti Agro");		
 	}
 }
