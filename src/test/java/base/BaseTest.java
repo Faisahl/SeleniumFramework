@@ -31,9 +31,7 @@ public class BaseTest {
 	public void setUp() throws IOException {
 		if(driver == null) {
 			FileReader fr = new FileReader(System.getProperty("user.dir")+"/src/test/resources/configFiles/config.properties");
-			FileReader fr2 = new FileReader(System.getProperty("user.dir")+"/src/test/resources/configFiles/locators.properties");
 			props.load(fr);
-			loc.load(fr2);
 			logger = LogManager.getLogger();
 		}
 		
@@ -48,7 +46,6 @@ public class BaseTest {
 			case "firefox":
 				WebDriverManager.firefoxdriver().setup();				
 				driver = new FirefoxDriver();
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 				driver.get(props.getProperty("testurl"));
 				logger.info("browser has been instantiated");
 				break;
@@ -59,6 +56,14 @@ public class BaseTest {
 	public void tearDown() {
 		driver.close();
 		logger.info("browser closed successfully");
+	}
+	
+	public static String navigateToUrl(String path) {
+		return props.getProperty("testurl") + path;
+	}
+	
+	public static String getBaseUrl() {
+		return props.getProperty("testurl");
 	}
 
 }
