@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ATSuite">
-  <test thread-count="5" name="ATSuite">
+  <test thread-count="5" name="ContactNumberLogin">
     <classes>
-      <class name="testcases.VerifySignIn"/>
+      <class name="testcases.verifyContactNumberLoginByTitle"/>
+    </classes>
+  </test> <!-- Test -->
+  <test thread-count="5" name="EmailLogin">
+    <classes>
+      <class name="testcases.verifyEmailLoginByTitle"/>
+    </classes>
+  </test> <!-- Test -->
+  <test thread-count="5" name="InvalidLogin">
+    <classes>
+      <class name="testcases.verifyInvalidLogin"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

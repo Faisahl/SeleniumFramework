@@ -1,7 +1,19 @@
-[INFO ] 2025-03-22 16:03:13,282 base.BaseTest:48 - browser has been instantiated
-[INFO ] 2025-03-22 16:03:13,662 base.BaseTest:17 - navigated to login page
-[INFO ] 2025-03-22 16:03:13,969 base.BaseTest:23 - login method selected: contact number
-[INFO ] 2025-03-22 16:03:14,039 base.BaseTest:26 - correct contact number entered
-[INFO ] 2025-03-22 16:03:14,064 base.BaseTest:29 - correct password entered
-[INFO ] 2025-03-22 16:03:14,328 base.BaseTest:32 - login button clicked
-[INFO ] 2025-03-22 16:03:15,670 base.BaseTest:56 - browser closed successfully
+[INFO ] 2025-03-22 16:13:42,004 base.BaseTest:48 - browser has been instantiated
+[INFO ] 2025-03-22 16:13:42,434 base.BaseTest:17 - navigated to login page
+[INFO ] 2025-03-22 16:13:42,745 base.BaseTest:23 - login method selected: contact number
+[INFO ] 2025-03-22 16:13:42,934 base.BaseTest:26 - correct contact number entered
+[INFO ] 2025-03-22 16:13:42,981 base.BaseTest:29 - correct password entered
+[INFO ] 2025-03-22 16:13:43,238 base.BaseTest:32 - login button clicked
+[INFO ] 2025-03-22 16:13:44,650 base.BaseTest:56 - browser closed successfully
+[INFO ] 2025-03-22 16:13:48,003 base.BaseTest:48 - browser has been instantiated
+[INFO ] 2025-03-22 16:13:48,299 base.BaseTest:17 - navigated to login page
+[INFO ] 2025-03-22 16:13:48,411 base.BaseTest:23 - correct email entered
+[INFO ] 2025-03-22 16:13:48,475 base.BaseTest:26 - correct password entered
+[INFO ] 2025-03-22 16:13:48,736 base.BaseTest:29 - login button clicked
+[INFO ] 2025-03-22 16:13:50,076 base.BaseTest:56 - browser closed successfully
+[INFO ] 2025-03-22 16:13:53,609 base.BaseTest:48 - browser has been instantiated
+[INFO ] 2025-03-22 16:13:53,899 base.BaseTest:18 - navigated to login page
+[INFO ] 2025-03-22 16:13:54,064 base.BaseTest:24 - email entered
+[INFO ] 2025-03-22 16:13:54,126 base.BaseTest:27 - incorrect password entered
+[INFO ] 2025-03-22 16:13:54,393 base.BaseTest:30 - login button clicked
+[INFO ] 2025-03-22 16:13:55,771 base.BaseTest:56 - browser closed successfully
