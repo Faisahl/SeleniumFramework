@@ -10,17 +10,17 @@ import org.testng.annotations.Test;
 import base.BaseTest;
 import pages.LoginPage;
 
-public class verifyLoginByTitle extends BaseTest {
+public class verifyContactNumberLoginByTitle extends BaseTest {
 	@Test
-	public void VerifyLoginByTitle() throws InterruptedException {
+	public void VerifyContactNumberLoginByTitle() throws InterruptedException {
 		driver.get(navigateToUrl("api/auth/login"));
 		logger.info("navigated to login page");
 		
 		LoginPage loginPage = new LoginPage(driver);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		
-		loginPage.enterUsername("test@testy.com");
-		logger.info("correct entered");
+		loginPage.enteridentifier("4142341543");
+		logger.info("correct contact number entered");
 		
 		loginPage.enterPassword("opal");
 		logger.info("correct password entered");
@@ -28,11 +28,10 @@ public class verifyLoginByTitle extends BaseTest {
 		loginPage.submitLogin();
 		logger.info("login button clicked");
 		
+		String actualTitle = driver.getTitle();
+		logger.info("actual title after login: " + actualTitle);
+		
 		wait.until(ExpectedConditions.urlToBe(getBaseUrl()));
-		Assert.assertEquals(driver.getTitle(), "Welcome - Kashti Agro", "Titles do not match");		
+		Assert.assertEquals(actualTitle, "Welcome - Kashti Agro");		
 	}
 }
-
-//for later when using excel data
-//@Test(dataProviderClass=xlsDataReader.class, dataProvider="xldata")
-//String username, String password

@@ -2,7 +2,6 @@ package testcases;
 
 import java.time.Duration;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -11,9 +10,9 @@ import org.testng.annotations.Test;
 import base.BaseTest;
 import pages.LoginPage;
 
-public class verifyInvalidLogin extends BaseTest {
+public class verifyEmailLoginByTitle extends BaseTest {
 	@Test
-	public void VerifyInvalidLogin() throws InterruptedException {
+	public void VerifyEmailLoginByTitle() throws InterruptedException {
 		driver.get(navigateToUrl("api/auth/login"));
 		logger.info("navigated to login page");
 		
@@ -21,15 +20,22 @@ public class verifyInvalidLogin extends BaseTest {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		
 		loginPage.enteridentifier("test@testy.com");
-		logger.info("email entered");
+		logger.info("correct email entered");
 		
-		loginPage.enterPassword("ropal");
-		logger.info("incorrect password entered");
+		loginPage.enterPassword("opal");
+		logger.info("correct password entered");
 		
 		loginPage.submitLogin();
 		logger.info("login button clicked");
 		
-		wait.until(ExpectedConditions.visibilityOf(loginPage.getErrorMsg()));
-		Assert.assertEquals(loginPage.getErrorMsg().getText(), "Login failed: Invalid credentials");		
+		String actualTitle = driver.getTitle();
+		logger.info("actual title after login: " + actualTitle);
+		
+		wait.until(ExpectedConditions.urlToBe(getBaseUrl()));
+		Assert.assertEquals(actualTitle, "Welcome - Kashti Agro");		
 	}
 }
+
+//for later when using excel data
+//@Test(dataProviderClass=xlsDataReader.class, dataProvider="xldata")
+//String username, String password
