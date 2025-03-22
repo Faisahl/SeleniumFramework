@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage {
 	private WebDriver driver;
@@ -15,8 +16,8 @@ public class LoginPage {
 		this.driver = driver;
 	}
 	
-	public By getErrorMsg() {
-		return errorMsg;
+	public WebElement getErrorMsg() {
+		return driver.findElement(errorMsg);
 	}
 	
 	public void enterUsername(String username) {

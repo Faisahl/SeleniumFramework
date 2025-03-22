@@ -16,13 +16,12 @@ public class verifyInvalidLogin extends BaseTest {
 	public static void VerifyInvalidLogin() throws InterruptedException {
 		driver.get(navigateToUrl("api/auth/login"));
 		LoginPage loginPage = new LoginPage(driver);
-		WebElement errorMsg = driver.findElement(loginPage.getErrorMsg());
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		
 		loginPage.enterUsername("test@testy.com");
 		loginPage.enterPassword("ropal");
 		loginPage.submitLogin();
-		wait.until(ExpectedConditions.visibilityOf(errorMsg));
-		Assert.assertEquals(errorMsg.getText(), "Login failed: Invalid credentials");		
+		wait.until(ExpectedConditions.visibilityOf(loginPage.getErrorMsg()));
+		Assert.assertEquals(loginPage.getErrorMsg().getText(), "Login failed: Invalid credentials");		
 	}
 }
