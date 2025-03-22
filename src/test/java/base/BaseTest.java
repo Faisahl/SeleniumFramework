@@ -22,9 +22,7 @@ public class BaseTest {
 	
 	public static WebDriver driver;
 	public static Properties props = new Properties();
-	public static Properties loc = new Properties();
 	public static FileReader fr;
-	public static FileReader fr2;
 	public static Logger logger;
 	
 	@BeforeMethod

@@ -13,14 +13,22 @@ import pages.LoginPage;
 
 public class verifyInvalidLogin extends BaseTest {
 	@Test
-	public static void VerifyInvalidLogin() throws InterruptedException {
+	public void VerifyInvalidLogin() throws InterruptedException {
 		driver.get(navigateToUrl("api/auth/login"));
+		logger.info("navigated to login page");
+		
 		LoginPage loginPage = new LoginPage(driver);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		
 		loginPage.enterUsername("test@testy.com");
+		logger.info("email entered");
+		
 		loginPage.enterPassword("ropal");
+		logger.info("incorrect password entered");
+		
 		loginPage.submitLogin();
+		logger.info("login button clicked");
+		
 		wait.until(ExpectedConditions.visibilityOf(loginPage.getErrorMsg()));
 		Assert.assertEquals(loginPage.getErrorMsg().getText(), "Login failed: Invalid credentials");		
 	}
