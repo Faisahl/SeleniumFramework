@@ -2,6 +2,7 @@ package testcases;
 
 import java.time.Duration;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,11 +15,11 @@ import pages.LoginPage;
 public class verifyInvalidLogin extends BaseTest {
 	@Test
 	public void VerifyInvalidLogin() throws InterruptedException {
-		driver.get(navigateToUrl("api/auth/login"));
+		driverGet().get(navigateToUrl("api/auth/login"));
 		logger.info("navigated to login page");
 		
-		LoginPage loginPage = new LoginPage(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		LoginPage loginPage = new LoginPage(driverGet());
+		WebDriverWait wait = new WebDriverWait(driverGet(), Duration.ofSeconds(3));
 		
 		loginPage.enteridentifier("test@testy.com");
 		logger.info("email entered");

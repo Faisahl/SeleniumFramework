@@ -13,11 +13,11 @@ import pages.LoginPage;
 public class verifyContactNumberLoginByTitle extends BaseTest {
 	@Test
 	public void VerifyContactNumberLoginByTitle() throws InterruptedException {
-		driver.get(navigateToUrl("api/auth/login"));
+		driverGet().get(navigateToUrl("api/auth/login"));
 		logger.info("navigated to login page");
 		
-		LoginPage loginPage = new LoginPage(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		LoginPage loginPage = new LoginPage(driverGet());
+		WebDriverWait wait = new WebDriverWait(driverGet(), Duration.ofSeconds(3));
 		
 		loginPage.selectContactNumberMethod();
 		logger.info("login method selected: contact number");
@@ -32,6 +32,6 @@ public class verifyContactNumberLoginByTitle extends BaseTest {
 		logger.info("login button clicked");
 		
 		wait.until(ExpectedConditions.urlToBe(getBaseUrl()));
-		Assert.assertEquals(driver.getTitle(), "Welcome - Kashti Agro");		
+		Assert.assertEquals(driverGet().getTitle(), "Welcome - Kashti Agro");		
 	}
 }

@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -20,40 +21,50 @@ import utilities.Log;
 
 public class BaseTest {
 	
-	public static WebDriver driver;
+	public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	public static Properties props = new Properties();
 	public static FileReader fr;
 	public static Logger logger;
 	
 	@BeforeMethod
 	public void setUp() throws IOException {
-		if(driver == null) {
-			FileReader fr = new FileReader(System.getProperty("user.dir")+"/src/test/resources/configFiles/config.properties");
-			props.load(fr);
-			logger = LogManager.getLogger();
-		}
+		FileReader fr = new FileReader(System.getProperty("user.dir")+"/src/test/resources/configFiles/config.properties");
+		props.load(fr);
+		logger = LogManager.getLogger();
 		
+		WebDriver localDriver = null;
 		switch(props.getProperty("browser")) {
 			case "chrome":
 				WebDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
-				driver.get(props.getProperty("testurl"));
-				logger.info("browser has been instantiated");
+				localDriver = new ChromeDriver();
 				break;
 			
 			case "firefox":
-				WebDriverManager.firefoxdriver().setup();				
-				driver = new FirefoxDriver();
-				driver.get(props.getProperty("testurl"));
-				logger.info("browser has been instantiated");
+				WebDriverManager.firefoxdriver().setup();
+				FirefoxOptions firefoxOptions = new FirefoxOptions();
+	            firefoxOptions.addArguments("--headless"); // Enable headless mode
+				localDriver = new FirefoxDriver(firefoxOptions);
 				break;
 		}
+		
+		if (localDriver != null) {
+            localDriver.get(props.getProperty("testurl"));
+            logger.info("Browser instantiated and navigated to: " + props.getProperty("testurl"));
+            driver.set(localDriver);
+        }
 	}
 	
 	@AfterMethod
 	public void tearDown() {
-		driver.close();
-		logger.info("browser closed successfully");
+		if (driver.get() != null) {
+            driver.get().quit();  // Ensures the WebDriver session is fully closed
+            driver.remove();
+            logger.info("Browser closed successfully");
+        }
+	}
+	
+	public WebDriver driverGet() {
+		return driver.get();
 	}
 	
 	public static String navigateToUrl(String path) {

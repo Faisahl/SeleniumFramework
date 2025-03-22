@@ -13,11 +13,11 @@ import pages.LoginPage;
 public class verifyEmailLoginByTitle extends BaseTest {
 	@Test
 	public void VerifyEmailLoginByTitle() throws InterruptedException {
-		driver.get(navigateToUrl("api/auth/login"));
+		driverGet().get(navigateToUrl("api/auth/login"));
 		logger.info("navigated to login page");
 		
-		LoginPage loginPage = new LoginPage(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		LoginPage loginPage = new LoginPage(driverGet());
+		WebDriverWait wait = new WebDriverWait(driverGet(), Duration.ofSeconds(3));
 		
 		loginPage.enteridentifier("test@testy.com");
 		logger.info("correct email entered");
@@ -29,7 +29,7 @@ public class verifyEmailLoginByTitle extends BaseTest {
 		logger.info("login button clicked");
 		
 		wait.until(ExpectedConditions.urlToBe(getBaseUrl()));
-		Assert.assertEquals(driver.getTitle(), "Welcome - Kashti Agro");		
+		Assert.assertEquals(driverGet().getTitle(), "Welcome - Kashti Agro");		
 	}
 }
 
