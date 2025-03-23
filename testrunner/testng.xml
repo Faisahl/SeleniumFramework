@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ATSuite" parallel="tests">
-  <test thread-count="2" name="ContactNumberLogin">
+  <test thread-count="1" name="ContactNumberLogin">
     <classes>
       <class name="testcases.verifyContactNumberLoginByTitle"/>
     </classes>
   </test> <!-- Test -->
-  <test thread-count="2" name="EmailLogin">
+  <test thread-count="1" name="EmailLogin">
     <classes>
       <class name="testcases.verifyEmailLoginByTitle"/>
     </classes>
   </test> <!-- Test -->
-  <test thread-count="2" name="InvalidLogin">
+  <test thread-count="1" name="InvalidEmailLogin">
     <classes>
-      <class name="testcases.verifyInvalidLogin"/>
+      <class name="testcases.verifyInvalidEmailLogin"/>
+    </classes>
+  </test> <!-- Test -->
+  <test thread-count="1" name="InvalidContactNumberLogin">
+    <classes>
+      <class name="testcases.verifyInvalidContactNumberLogin"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
