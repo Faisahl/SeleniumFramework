@@ -42,7 +42,7 @@ public class BaseTest {
 			case "firefox":
 				WebDriverManager.firefoxdriver().setup();
 				FirefoxOptions firefoxOptions = new FirefoxOptions();
-	            firefoxOptions.addArguments("--headless"); // Enable headless mode
+//	            firefoxOptions.addArguments("--headless"); // Enable headless mode
 				localDriver = new FirefoxDriver(firefoxOptions);
 				break;
 		}
@@ -57,14 +57,15 @@ public class BaseTest {
 	@AfterMethod
 	public void tearDown() {
 		if (driver.get() != null) {
-            driver.get().quit();  // Ensures the WebDriver session is fully closed
+			logger.info("Closing browser");
+			driver.get().quit();  // Ensures the WebDriver session is fully closed
             driver.remove();
             logger.info("Browser closed successfully");
         }
 	}
 	
 	public WebDriver driverGet() {
-		return driver.get();
+		return driver.get();		
 	}
 	
 	public static String navigateToUrl(String path) {
